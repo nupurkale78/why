@@ -18,16 +18,11 @@ The skill follows the relevant code path, checks history when it may clarify the
 
 ## Install
 
-Copy the `skills/why` folder into the skill directory used by your agent. For Cursor, from this repository’s root:
+Copy `skills/why/` into the skills directory supported by your agent, keeping the folder name `why` and its `references/` directory together.
 
-```sh
-mkdir -p .cursor/skills
-cp -R skills/why .cursor/skills/
-```
+The skill uses the `SKILL.md` format with its reference files kept alongside it. After installing, invoke `/why` if your agent supports slash commands, or ask a matching question naturally.
 
-For a user-level Cursor install, copy that same folder into `~/.cursor/skills/why`. Then invoke `/why` in Agent chat or ask a matching question naturally. Other agents may use a different skill directory; the skill contents do not depend on Cursor.
-
-Copy the whole `skills/why` folder so its reference guides stay available. There is no plugin, build step, dependency, or setup script.
+There is no plugin, build step, dependency, or setup script.
 
 ## Evidence labels
 
