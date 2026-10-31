@@ -1,29 +1,32 @@
 ---
 name: why
-description: Investigate why code behaves or is structured a certain way. Use when someone asks why a branch, guard, workaround, API, dependency, test, or design choice exists, especially when Git history or project discussions may explain the intent.
+description: Explain why a code path behaves as it does or why a design choice exists. Use when someone asks why a branch, guard, workaround, API, dependency, test, or implementation decision was made, particularly when the answer may be in Git history or project discussions.
 ---
 
 # Why
 
-Explain the rationale behind a code choice with evidence. Build a short, traceable account from the code that exists now and the history that led to it. Keep observed behavior, documented intent, and inference distinct.
+Explain why a code path behaves as it does or why a design choice was made. Build a concise, traceable explanation from the current implementation and the history that led to it. Keep observed behavior, documented intent, inference, and missing evidence distinct.
 
 ## Workflow
 
-1. **Scope the question.** Identify the symbol, behavior, or design choice and the smallest relevant code path. Ask one concise follow-up only when the target is genuinely ambiguous.
-2. **Read the current code.** Inspect the implementation, callers, nearby comments, and relevant tests. Establish what the code does today before explaining why.
-3. **Trace the change.** Use repository history to find when and how the choice entered the code. Read the full diff and surrounding commits. Useful commands and search strategies are in [history research](references/history-research.md).
-4. **Look for intent.** Follow issue, pull request, design note, or review links from the commit or repository. Prefer the author’s stated rationale and discussion over assumptions based on code shape.
-5. **Explain with calibrated claims.** Give the most supported reason, cite file paths and commit/PR/issue identifiers or links, and separate documented rationale from your own inference. If history does not say why, say that plainly.
+1. **Scope the question.** Identify the symbol, behavior, or design choice and the smallest relevant code path. Ask one concise follow-up only if the target is genuinely ambiguous.
+2. **Establish current behavior.** Read the implementation, relevant callers, comments, and tests. If the question is about runtime behavior, trace control flow and important values far enough to explain the observed result. Do not mistake a plausible reading of one line for a complete explanation.
+3. **Choose the right history path.** If the question asks why a decision was made, find when it entered the code and inspect the full diff and surrounding commits. For both kinds of question, check history when it may clarify behavior or motivation. See [history research](references/history-research.md).
+4. **Find decision evidence.** Follow references to pull requests, issues, reviews, design notes, or release notes. Read the relevant discussion where access permits. Prefer an explicit rationale over assumptions based on code shape.
+5. **Write a traceable answer.** State the explanation, cite relevant paths and history links or identifiers, and label the claim as documented, inferred, or unknown. If available evidence does not establish intent, say so directly.
 
 ## Evidence rules
 
 - Treat current code and tests as evidence of current behavior, not automatically as evidence of original intent.
-- A commit message is a clue. Read the diff and, if available, the linked discussion before attributing motivation.
+- A commit subject or PR title is a search clue, not proof of motivation. Read the diff and linked discussion before attributing a reason.
 - Do not turn temporal correlation into causation. A change that followed a bug report is not necessarily the fix for that report unless the evidence connects them.
-- Label conclusions as **Documented**, **Inferred**, or **Unknown**. Use “inferred” only when concrete evidence supports the explanation; do not fill gaps with a plausible story.
-- If a link or remote history is unavailable, say what you could inspect and what remains unavailable. Never imply that you read a source you could not access.
-- Keep investigation proportional. Stop when the question is answered with adequate evidence, or when the remaining explanation would be speculation.
+- Label rationale as **Documented**, **Inferred**, or **Unknown**. Use **Inferred** only when concrete evidence supports the explanation; do not fill gaps with a plausible story.
+- Distinguish observable behavior from rationale. Tests may encode expected behavior without explaining why that expectation exists.
+- If history is shallow, files moved, or a link is unavailable, say what you inspected and what remains unavailable. Never imply that you read a source you could not access.
+- Cite exact repository paths and, when available, line ranges or stable commit/PR/issue links. Keep references close to the claims they support.
+- Do not modify code unless the user separately asks for a change. Answer the why question first.
+- Keep research proportional. Stop when the explanation is adequately supported, or when further claims would be speculation.
 
 ## Response shape
 
-Use the format in [answer format](references/answer-format.md). For a simple question, answer in a few sentences; expand only when the code path or history needs it.
+Use [answer format](references/answer-format.md) as a guide, not a rigid template. For a simple question, answer in a few sentences; expand only when the behavior or evidence chain needs it.

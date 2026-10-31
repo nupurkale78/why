@@ -1,11 +1,15 @@
 # Answer format
 
-Adapt this structure to the question; omit headings when a short paragraph is clearer.
+Adapt this outline to the question. A straightforward behavior question may need only a short paragraph; use headings when they make a complex answer easier to follow.
 
-**Short answer:** State the best-supported explanation and its evidence status.
+## Short answer
 
-**Evidence:** Point to the relevant implementation or test and the history source that supports the explanation. Link to a commit, pull request, or issue when available; otherwise give a repository-relative path and identifier.
+Explain the current behavior or the design rationale, and label rationale as **Documented**, **Inferred**, or **Unknown**.
 
-**What remains uncertain:** Mention only meaningful gaps. If no source states the original reason, distinguish a reasonable inference from documented intent.
+## Evidence
 
-Avoid dumping command output or a chronological history tour. Explain the connection between the evidence and the answer.
+Connect the claim to exact code or tests and to the relevant commit, pull request, issue, or design note. Link to remote sources when accessible; otherwise give repository paths and identifiers. Explain what the evidence establishes instead of listing search results.
+
+## What remains unclear
+
+Include only material uncertainty. If the repository does not preserve the original reason, say that directly. Avoid false precision, unsupported causal claims, and a long chronological recap.

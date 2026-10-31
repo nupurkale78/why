@@ -1,28 +1,36 @@
 # Researching code history
 
-Use the repository’s own history first. Keep searches scoped to the affected file or symbol, then widen only if needed.
+Start with the smallest useful scope: the affected symbol, file, or behavior. Read the current implementation before using history to explain it.
 
-## Find the change
+## Trace a change
 
 ```sh
 git log --oneline -- path/to/file
 git log -S'interestingExpression' -- path/to/file
+git log -G'pattern' -- path/to/file
 git blame -L 40,70 -- path/to/file
 git show --stat <commit>
 git show <commit> -- path/to/file
 ```
 
-Read the full patch, not just its subject. Check the parent commit and nearby changes if the patch depends on context. Renames or moved code may require `git log --follow -- path/to/file`.
+- `git log -S` finds commits that change the number of occurrences of a string.
+- `git log -G` finds commits whose diff matches a regular expression.
+- `git blame` identifies the commit that last changed each line; it does not explain why the line changed.
+- Read the complete patch and its parent context. If code moved or the file was renamed, try `git log --follow -- path/to/file` and inspect the earlier path.
 
-## Follow references
+## Follow the evidence
 
-Look for issue or pull request identifiers in commit messages, merge commits, source comments, and release notes. If project tooling or network access can retrieve the linked discussion, inspect the original report and relevant review comments. Search repository docs and tests for the same behavior or terminology.
+Search commit bodies, merge messages, nearby comments, release notes, and repository documentation for issue or pull request references. When a linked discussion is accessible, read the original report and the parts of the review that explain the decision or constraints. A title alone is not enough to establish intent.
 
-Treat each source according to what it can establish:
+Use sources for the claims they can support:
 
-- **Code and tests:** current behavior and constraints encoded in the repository.
-- **Diff and commit:** what changed and the commit author’s stated summary.
-- **Issue, pull request, review, design note:** motivation, alternatives, and tradeoffs, when explicitly discussed.
-- **Inference:** a reason suggested by evidence but not stated directly. Label it as such.
+| Source | Supports |
+| --- | --- |
+| Current implementation and tests | Behavior and constraints represented in the checkout |
+| Commit diff and message | What changed and the author’s stated summary |
+| Issue, pull request, review, or design note | Motivation and tradeoffs when they are stated explicitly |
+| Inference | A reason suggested by concrete evidence but not stated directly |
 
-If remote sources cannot be reached, finish with local evidence and say the discussion was unavailable. Do not manufacture a rationale from a commit title, naming, or surrounding code alone.
+## Report limits
+
+History may be shallow, a reference may be missing, or a remote discussion may be inaccessible. State the specific limit and what you could inspect. Do not present an inference as a documented reason, or fill a gap with a plausible story. If more than one explanation fits the evidence, say so.
