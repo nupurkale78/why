@@ -1,0 +1,24 @@
+{
+  "name": "nupur-kale-tools",
+  "owner": {
+    "name": "Nupur Kale"
+  },
+  "metadata": {
+    "description": "Developer tools by Nupur Kale",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "why",
+      "source": ".",
+      "description": "Trace the rationale behind code through implementation, tests, and project history.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Nupur Kale"
+      },
+      "license": "MIT",
+      "keywords": ["code-explanation", "git-history", "developer-tools"],
+      "category": "Productivity"
+    }
+  ]
+}

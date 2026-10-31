@@ -1,0 +1,11 @@
+{
+  "name": "why",
+  "version": "0.1.0",
+  "description": "Trace the rationale behind code through implementation, tests, and project history.",
+  "author": {
+    "name": "Nupur Kale"
+  },
+  "repository": "https://github.com/nupurkale78/why",
+  "license": "MIT",
+  "keywords": ["code-explanation", "git-history", "developer-tools"]
+}
